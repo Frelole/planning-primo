@@ -567,7 +567,7 @@ function exportCSV(){
 function prevWeek(){weekOff--;renderWeekLabel();buildPlanning();}
 function nextWeek(){weekOff++;renderWeekLabel();buildPlanning();}
 function renderWeekLabel(){var mon=getMonday(weekOff);var sun=addDays(mon,6);document.getElementById('week-label').textContent='Semaine du '+fmtFR(mon)+' au '+fmtFR(sun);}
-function getEventsForDate(iso){var res=[];Object.values(villas).forEach(function(v){(v.events||[]).forEach(function(ev){if(ev.end===iso)res.push({villa:v,ev:ev,date:iso});});});return res;}
+function getEventsForDate(iso){var res=[];Object.values(villas).forEach(function(v){(v.events||[]).forEach(function(ev){if(ev.end===iso&&ev.summary.indexOf('Blocked')<0)res.push({villa:v,ev:ev,date:iso});});});return res;}
 function autoAssign(items){
   var loads={};emps.forEach(function(e){loads[e.id]=0;});
   items.forEach(function(item){
